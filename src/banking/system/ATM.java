@@ -4,20 +4,31 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Login extends JFrame {
+public class ATM extends JFrame {
     
     
     JTextField cardTextField;
     JPasswordField pinTextField;
 
-    Login() {
+    ATM() {
         setTitle("ATM Simulator");
         setLayout(null); 
         
         JLabel title = new JLabel("ATM Simulator System");
+        
         title.setFont(new Font("Osward", Font.BOLD, 30));
         title.setBounds(225, 40, 400, 40);
         add(title);
+        
+        JLabel bank = new JLabel(Bank.getBankName());
+        bank.setFont(new Font("Osward", Font.BOLD, 20));
+        bank.setBounds(225, 70, 400, 40);
+        add(bank);
+        
+        JLabel bankLocation = new JLabel(Bank.getBankLocation());
+        bankLocation.setFont(new Font("Osward", Font.BOLD, 10));
+        bankLocation.setBounds(225, 90, 400, 40);
+        add(bankLocation);
         
         JLabel cardLabel = new JLabel("Card No:");
         cardLabel.setBounds(250, 150, 100, 30);
@@ -59,10 +70,7 @@ public class Login extends JFrame {
     
     
     private void authenticateUser() {
-        // hard coded credentials
-        String validCardNumber = "1"; 
-        String validPin = "1";
-        
+
         String enteredCard = cardTextField.getText();
         String enteredPin = new String(pinTextField.getPassword());
         
@@ -73,7 +81,7 @@ public class Login extends JFrame {
                 JOptionPane.ERROR_MESSAGE);
         }
         
-        else if (enteredCard.equals(validCardNumber) && enteredPin.equals(validPin)) {
+        else if (enteredCard.equals(User.getUserId()) && enteredPin.equals(User.getUserPin())) {
             
             //opens account screen
             new Account();
@@ -94,6 +102,6 @@ public class Login extends JFrame {
     }
     
     public static void main(String[] args) {
-        new Login();
+        new ATM();
     }
 }
