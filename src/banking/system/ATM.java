@@ -56,7 +56,7 @@ public class ATM extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+            
                 authenticateUser(); 
             }
         });
@@ -84,7 +84,9 @@ public class ATM extends JFrame {
         else if (enteredCard.equals(User.getUserId()) && enteredPin.equals(User.getUserPin())) {
             
             //opens account screen
-            new Account();
+            UserAccount user = new UserAccount(5000);
+            new Account(user);
+            
             setVisible(false);
             
         } else {

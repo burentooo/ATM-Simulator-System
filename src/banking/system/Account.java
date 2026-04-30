@@ -6,14 +6,14 @@ import javax.swing.*;
 
 public class Account extends JFrame {
     
-    private double accountBalance = 5000;
+    UserAccount account;
     
-    public double getBalance() {
-        return accountBalance;
-    }
     
-    Account() {
-
+    
+    Account(UserAccount account) {
+        
+        this.account = account;
+        
         setTitle("Account");
 
         JLabel label = new JLabel("Welcome!");
@@ -33,6 +33,39 @@ public class Account extends JFrame {
         balanceButton.setBounds(100, 250, 225, 125);
         add(balanceButton);
         
+        withdrawButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                String input = JOptionPane.showInputDialog("Enter amount to withdraw:");
+                
+                if(input == null) {
+                    return;
+                }
+                
+                if(input.isBlank()) {
+                    JOptionPane.showMessageDialog(Account.this, "Empty Field", "Error",JOptionPane.ERROR_MESSAGE);
+                }
+                else {
+                    try {
+                        double amount = Double.parseDouble(input);
+                        
+                        if(account.withdraw(amount)) {
+                            new Transaction(account);
+                            setVisible(false);
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(Account.this, "Insufficient Balance!", "Error",JOptionPane.ERROR_MESSAGE);
+                        }
+                        
+                    } catch(Exception ex) {
+                        JOptionPane.showMessageDialog(Account.this, "Invalid Input");
+                    }
+                    
+                }
+            }
+        });
+        
         balanceButton.addActionListener(new ActionListener() {
             
             
@@ -40,7 +73,7 @@ public class Account extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 
                 JOptionPane.showMessageDialog(Account.this, 
-                String.format("%.2f", getBalance()),
+                String.format("%.2f", account.getBalance()),
                 "Available Balance", 
                 JOptionPane.INFORMATION_MESSAGE);
             }
