@@ -4,6 +4,16 @@ package banking.system;
 public class UserAccount {
     
     private double balance;
+    private String type;
+
+    
+    public String getType() {
+        return type;
+    }
+    
+    public void setType(String t) {
+        this.type = t;
+    }
 
     public UserAccount(double balance) {
         this.balance = balance;

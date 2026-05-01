@@ -1,4 +1,5 @@
 package banking.system;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,11 +8,8 @@ import javax.swing.*;
 public class Account extends JFrame {
     
     UserAccount account;
-    
-    
-    
+
     Account(UserAccount account) {
-        
         this.account = account;
         
         setTitle("Account");
@@ -51,7 +49,10 @@ public class Account extends JFrame {
                         double amount = Double.parseDouble(input);
                         
                         if(account.withdraw(amount)) {
+                            account.setType("withdraw");
+                            
                             new Transaction(account);
+                            
                             setVisible(false);
                         }
                         else {
@@ -67,8 +68,6 @@ public class Account extends JFrame {
         });
         
         balanceButton.addActionListener(new ActionListener() {
-            
-            
             @Override
             public void actionPerformed(ActionEvent e) {
                 

@@ -16,10 +16,28 @@ public class Transaction extends JFrame {
         label.setBounds(316, 30, 400, 30);
         add(label);
         
-        JLabel labelTransaction = new JLabel("Balance: " + account.getBalance());
-        labelTransaction.setFont(new Font("Osward", Font.BOLD, 30));
-        labelTransaction.setBounds(100, 80, 225, 125);
-        add(labelTransaction);
+        JLabel labelBalance = new JLabel("Balance: " + account.getBalance());
+        labelBalance.setFont(new Font("Osward", Font.BOLD, 30));
+        labelBalance.setBounds(100, 80, 225, 125);
+        add(labelBalance);
+        
+        JLabel labelType = new JLabel("Type: " + account.getType());
+        labelType.setFont(new Font("Osward", Font.BOLD, 30));
+        labelType.setBounds(100,110,225,125);
+        add(labelType);
+        
+        JButton goBackButton = new JButton("Back");
+        goBackButton.setBounds(100, 250, 225, 125);
+        add(goBackButton);
+        
+        goBackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                new Account(account);
+                setVisible(false);
+            }
+        });
         
         
         setLayout(null);
