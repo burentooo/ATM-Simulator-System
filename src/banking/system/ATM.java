@@ -1,5 +1,5 @@
 package banking.system;
-//MAIN PROJECT
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -9,8 +9,13 @@ public class ATM extends JFrame {
     
     JTextField cardTextField;
     JPasswordField pinTextField;
-
+    
+    //sets balance and create object
+    User user = new User("1", "1", "Jay Ganzan", "105 Tres de Abril", "09123456789");
+    Account userAccount = new Account(5000);
+    
     ATM() {
+        
         
         
         setTitle("ATM Simulator");
@@ -83,11 +88,10 @@ public class ATM extends JFrame {
                 JOptionPane.ERROR_MESSAGE);
         }
         
-        else if (enteredCard.equals(User.getUserId()) && enteredPin.equals(User.getUserPin())) {
+        else if (enteredCard.equals(user.getUserId()) && enteredPin.equals(user.getPin())) {
             
-            //sets balance first and open account screen
-            UserAccount user = new UserAccount(5000);
-            new Account(user);
+            
+            new AccountScreen(userAccount, user);
             
             setVisible(false);
             
