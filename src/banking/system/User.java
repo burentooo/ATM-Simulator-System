@@ -1,19 +1,30 @@
 package banking.system;
 
 public class User {
-    
-    // hard coded credentials
-    private static final String user = "1";
-    private static final String pin = "1";
-    private final String name = "Jay Ganzan";
-    private final String address = "105 Tres de Abril";
-    private final String contact = "09123456789";
-    
-    public static String getUserId() {
-        return user;
+
+    private String userId;
+    private String pin;
+    private String name;
+    private String address;
+    private String contact;
+
+    public User(String userId, String pin, String name, String address, String contact) {
+        this.userId = userId;
+        this.pin = pin;         
+        this.name = name;
+        this.address = address;
+        this.contact = contact;
     }
-    
-    public static String getUserPin() {
-        return pin; 
+
+    public String getUserId() {
+        return userId;
     }
-}
+
+    public String getPin() {    
+        return pin;
+    }
+
+    public String getName() {
+        return name;
+    }
+}   
