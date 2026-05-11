@@ -51,7 +51,7 @@ public class AccountScreen extends JFrame {
                         double amount = Double.parseDouble(input);
                         
                         if(account.withdraw(amount)) {
-                            account.setType("withdraw");
+                            account.setTransactionType("withdraw");
                             
                             new Transaction(account, user);
                             
