@@ -10,14 +10,9 @@ public class ATM extends JFrame {
     JTextField cardTextField;
     JPasswordField pinTextField;
     
-    //sets balance and create object
-    User user = new User("1234", "1234", "Jay Ganzan", "105 Tres de Abril", "09123456789");
-    Account userAccount = new Account(5000);
+    static Bank bank = new Bank();
     
     ATM() {
-        
-        
-        
         setTitle("ATM Simulator");
         setLayout(null); 
         
@@ -88,10 +83,10 @@ public class ATM extends JFrame {
                 JOptionPane.ERROR_MESSAGE);
         }
         
-        else if (enteredCard.equals(user.getUserId()) && enteredPin.equals(user.getPin())) {
+        else if (bank.authenticateUser(enteredCard, enteredPin)) {
             
             
-            new AccountScreen(userAccount, user);
+            new AccountScreen(bank.getAccount(), bank.getUser());
             
             
             setVisible(false);
