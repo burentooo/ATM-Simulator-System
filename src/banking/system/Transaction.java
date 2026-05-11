@@ -23,12 +23,17 @@ public class Transaction extends JFrame {
         
         JLabel labelType = new JLabel("Type: " + account.getTransactionType());
         labelType.setFont(new Font("Osward", Font.BOLD, 30));
-        labelType.setBounds(100,110,225,125);
+        labelType.setBounds(450,80,300,125);
         add(labelType);
+        
+        JLabel labelAmount = new JLabel("Amount: " + String.format("%.2f", account.getTransactionAmount()));
+        labelAmount.setFont(new Font("Osward", Font.BOLD, 30));
+        labelAmount.setBounds(100,140,350,125);
+        add(labelAmount);
         
         JLabel labelName = new JLabel("Name: " + user.getName());
         labelName.setFont(new Font("Osward", Font.BOLD, 30));
-        labelName.setBounds(450,110,300,125);
+        labelName.setBounds(450,140,300,125);
         add(labelName);
         
         JButton goBackButton = new JButton("Back");
