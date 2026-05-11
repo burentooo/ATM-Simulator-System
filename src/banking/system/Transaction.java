@@ -21,7 +21,7 @@ public class Transaction extends JFrame {
         labelBalance.setBounds(100, 80, 350, 125);
         add(labelBalance);
         
-        JLabel labelType = new JLabel("Type: " + account.getType());
+        JLabel labelType = new JLabel("Type: " + account.getTransactionType());
         labelType.setFont(new Font("Osward", Font.BOLD, 30));
         labelType.setBounds(100,110,225,125);
         add(labelType);
