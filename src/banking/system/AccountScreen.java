@@ -33,6 +33,35 @@ public class AccountScreen extends JFrame {
         balanceButton.setBounds(100, 250, 225, 125);
         add(balanceButton);
         
+        depositButton.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String input = JOptionPane.showInputDialog("Enter amount to withdraw:");
+                if(input == null) {
+                    return;
+                }
+                if(input.isBlank()) {
+                    JOptionPane.showMessageDialog(AccountScreen.this, "Empty Field", "Error",JOptionPane.ERROR_MESSAGE);
+                }
+                else {
+                    try {
+                        double amount = Double.parseDouble(input);
+                        if(account.deposit(amount)) {
+                            
+                            new Transaction(account, user);
+                            setVisible(false);
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(AccountScreen.this, "Invalid amount!", "Error",JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch(Exception ex) {
+                        JOptionPane.showMessageDialog(AccountScreen.this, "Invalid input");
+                    }
+                }
+            }
+        });
+        
         withdrawButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -51,7 +80,6 @@ public class AccountScreen extends JFrame {
                         double amount = Double.parseDouble(input);
                         
                         if(account.withdraw(amount)) {
-                            account.setTransactionType("withdraw");
                             
                             new Transaction(account, user);
                             
